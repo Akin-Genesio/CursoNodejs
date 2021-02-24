@@ -1,4 +1,7 @@
+import 'reflect-metadata'
 import express, { request, response } from 'express'
+import "./database"
+import { router } from './routes';
 
 const app = express();
 
@@ -10,11 +13,6 @@ const app = express();
  * PATCH = Alteração especifica
  */
 
- app.get("/users", (request, response) =>{
-     return response.json({message: "Hello World"})
- });
-
- app.post("/post", (request, response) =>{
-     return response.json({message: "Dados salvos"})
- })
+ app.use(express.json())
+app.use(router)
 app.listen(3333, () => console.log("Server is running")) 
